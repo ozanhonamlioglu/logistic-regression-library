@@ -1,10 +1,11 @@
 import numpy as np
 
 class LogisticRegression():
-  def __init__(self, epoch=100, L=1e-4):
+  def __init__(self, epoch=1000, L=1e-4, threshold=0.5):
     self.epoch = epoch
     self.L = L
     self.weights = None
+    self.threshold = threshold
   
   def __proba__(self, x_test):
     z = np.dot(x_test, self.weights)
@@ -21,6 +22,6 @@ class LogisticRegression():
       gradient = np.dot(x_train.T, err) / m
       self.weights -= self.L * gradient
       
-  def predict(self, x_test, threshold=0.5):
+  def predict(self, x_test):
     probabilities = self.__proba__(x_test)
-    return (probabilities >= threshold).astype(int)
+    return (probabilities >= self.threshold).astype(int)

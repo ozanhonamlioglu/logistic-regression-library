@@ -44,7 +44,7 @@ from sklearn.metrics import accuracy_score
 logistic = LogisticRegression(epoch=2000)
 logistic.train(X_train.to_numpy(), y_train.to_numpy())
 
-# print(logistic.weights)
+print(f"\nScores: {logistic.weights}\n")
 predictions = logistic.predict(X_test)
 print(f"Accuracy score: {accuracy_score(y_test, predictions)}")
 
